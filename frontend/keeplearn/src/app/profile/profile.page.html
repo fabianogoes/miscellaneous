@@ -1,0 +1,65 @@
+<ion-header>
+    <ion-toolbar color="primary">    
+        <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title class="page-title">Profile</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+
+  <ion-card>
+
+    
+    <ion-card-header>
+      <ion-grid>
+          <ion-row>
+            <ion-col></ion-col>
+            <ion-col>
+                <ion-img src="/assets/profile.png"></ion-img>
+            </ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+      </ion-grid>
+      <ion-card-title>Fabiano Góes</ion-card-title>
+      <ion-card-subtitle>Guarulhos, SP, Brazil</ion-card-subtitle>
+      <ion-label><h3>Software Engineer</h3></ion-label>
+      <ion-row>
+          <ion-col>
+            <ion-button color="light" size="small">
+              <ion-icon name="md-create" color="dark" size="small"></ion-icon>
+            </ion-button>
+          </ion-col>
+      </ion-row>
+    </ion-card-header>    
+    
+    <ion-card-content>
+        <ion-list>
+            <ion-item>
+                <ion-label position="floating" color="dark">E-mail:</ion-label>
+                <ion-input value="fabianogoes@gmail.com" disabled></ion-input>
+            </ion-item>          
+            <ion-item>
+                <ion-label position="floating" color="dark">Username:</ion-label>
+                <ion-input value="fabianogoes" disabled></ion-input>
+            </ion-item>          
+        </ion-list>
+    </ion-card-content>
+
+  </ion-card>
+
+  <ion-fab vertical="bottom" horizontal="center" edge slot="fixed">
+      <ion-fab-button color="primary" (click)="onHome()">
+        <ion-icon name="home"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>  
+  
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+  </ion-toolbar>
+</ion-footer>
+  

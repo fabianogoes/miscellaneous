@@ -1,0 +1,90 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title class="page-title">Practice</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-slides [options]="slideOpts" #slides *ngIf="!isEnd">
+
+
+    <ion-slide *ngFor="let card of cardList">
+        <ion-card *ngIf="isAsk">
+            <ion-card-header color="prymary">
+                <ion-card-subtitle><ion-icon name="help-circle-outline" size="large" color="primary"></ion-icon></ion-card-subtitle>
+                <ion-item>
+                    <ion-card-title color="primary">Ask</ion-card-title> 
+                    <ion-badge color="primary" slot="end">{{currentIndex}}/{{cardList.length}}</ion-badge>
+                </ion-item>                   
+            </ion-card-header>
+            <ion-card-content>
+              <ion-item>
+                  {{card?.ask}}
+              </ion-item>
+              <br/>
+              <ion-button color="primary" expand="block" (click)="onAnswer()" size="small">
+                  <ion-icon name="play" color="light"></ion-icon>
+              </ion-button>
+            </ion-card-content>
+          </ion-card>
+
+        <ion-card *ngIf="!isAsk">
+            <ion-card-header>
+                <ion-card-subtitle>
+                    <ion-icon name="information-circle-outline" size="large" color="danger"></ion-icon>
+                </ion-card-subtitle>
+                <ion-item>
+                    <ion-card-title color="danger">Answer</ion-card-title> 
+                    <ion-badge color="danger" slot="end">{{currentIndex}}/{{cardList.length}}</ion-badge>
+                </ion-item>                   
+            </ion-card-header>    
+            <ion-card-content>
+                <ion-item>
+                    {{card?.answer}}
+                </ion-item>
+                <br/>
+                <ion-button color="light" (click)="onHard()" size="small">
+                    <ion-icon name="thumbs-down" color="danger"></ion-icon>
+                    Hard
+                </ion-button>
+                <ion-button color="light" (click)="onDone()" size="small">
+                    <ion-icon name="done-all" color="success"></ion-icon>
+                    Done
+                </ion-button>
+                <ion-button color="light" (click)="onEasy()" size="small">
+                    <ion-icon name="thumbs-up" color="primary"></ion-icon>
+                    Easy
+                </ion-button>
+            </ion-card-content>
+        </ion-card>
+
+    </ion-slide>
+
+  </ion-slides>
+
+  <ion-fab vertical="bottom" horizontal="center" edge slot="fixed">
+    <ion-fab-button color="primary" (click)="onStart()">
+      <ion-icon name="refresh"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button [routerLink]="['/home']">
+                <ion-icon name="home" size="large"></ion-icon>
+            </ion-button>                
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button [routerLink]="['/car-list']">
+                <ion-icon name="logo-buffer" size="large"></ion-icon>
+            </ion-button>        
+        </ion-buttons>
+    </ion-toolbar>    
+</ion-footer>

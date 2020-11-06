@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar color="primary">    
+      <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="page-title">List of Cards</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <!-- Start Content -->
+  <ion-list>
+    <ion-item *ngFor="let card of cards">
+      <ion-label>{{card.ask}}</ion-label>
+      <ion-button [routerLink]="['/card-edit', card.id]" color="light">
+        <ion-icon name="md-create" size="small" item-right></ion-icon>
+      </ion-button>
+      <ion-button (click)="onDelete(card.id)" color="light">
+        <ion-icon name="trash" size="small" color="danger" item-right></ion-icon>
+      </ion-button>
+    </ion-item>    
+  </ion-list>
+  <!-- /End Content -->
+
+  <ion-fab vertical="bottom" horizontal="center" edge slot="fixed">
+    <ion-fab-button color="primary" [routerLink]="['/card-add']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button [routerLink]="['/home']">
+            <ion-icon name="home" size="large"></ion-icon>
+          </ion-button>                
+        </ion-buttons>
+    </ion-toolbar>    
+</ion-footer>
+
+

@@ -1,0 +1,64 @@
+<ion-header>
+    <ion-toolbar color="primary">    
+        <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title class="page-title">New Cards</ion-title>
+    </ion-toolbar>
+</ion-header>
+  
+<ion-content padding>
+
+    <!-- Start Content -->
+    <ion-card>  
+
+      <ion-card-content>
+          <form [formGroup]="cardFormGroup" (ngSubmit)="onSubmit()">
+            <ion-label slot="end">Ask</ion-label>
+            <ion-item>
+              <ion-textarea value="{{card?.ask}}" formControlName="ask" #inputAsk></ion-textarea>
+              <!-- <ion-textarea formControlName="ask" #inputAsk></ion-textarea> -->
+            </ion-item>          
+            <br/>
+
+            <ion-label slot="end">Answer</ion-label>
+            <ion-item>
+              <ion-textarea value="{{card?.answer}}" formControlName="answer"></ion-textarea>
+              <!-- <ion-textarea formControlName="answer"></ion-textarea> -->
+            </ion-item>   
+
+            <br/><br/>
+        
+            <ion-button color="dark" expand="block" type="submit" [disabled]="!cardFormGroup.valid">
+              <ion-icon name="checkmark" color="light"></ion-icon>
+              Save
+            </ion-button>
+          </form>
+      
+        </ion-card-content>  
+      
+    </ion-card>      
+    <!-- /End Content -->
+  
+    <ion-fab vertical="bottom" horizontal="center" edge slot="fixed">
+      <ion-fab-button color="primary" [routerLink]="['/practice']">
+        <ion-icon name="play"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+    
+  </ion-content>
+  
+  <ion-footer>
+      <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button [routerLink]="['/home']">
+              <ion-icon name="home" size="large"></ion-icon>
+            </ion-button>                
+          </ion-buttons>
+          <ion-buttons slot="end">
+            <ion-button [routerLink]="['/card-list']">
+              <ion-icon name="logo-buffer" size="large"></ion-icon>
+            </ion-button>                
+          </ion-buttons>
+      </ion-toolbar>    
+  </ion-footer>

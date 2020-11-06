@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>KeepLearn</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-fab vertical="top" horizontal="end" edge slot="fixed">
+    <ion-fab-button color="light" [routerLink]="['/profile']" size="small">
+      <ion-icon name="contact"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+    
+  <!-- Start Content -->
+  <!-- /End Content -->
+
+  <ion-fab vertical="bottom" horizontal="center" edge slot="fixed">
+    <ion-fab-button color="primary" [routerLink]="['/practice']">
+      <ion-icon name="play"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    
+      <ion-buttons slot="start">
+        <ion-button [routerLink]="['/card-add']">
+            <ion-icon name="add-circle" size="large"></ion-icon>
+        </ion-button>                
+        <ion-button [routerLink]="['/card-list']">
+            <ion-icon name="logo-buffer" size="large"></ion-icon>
+        </ion-button>        
+      </ion-buttons>
+
+      <ion-buttons slot="end">
+        <ion-button [routerLink]="['/settings']">
+          <ion-icon name="cog" size="large"></ion-icon>
+        </ion-button>                
+        <ion-button [routerLink]="['/about']">
+          <ion-icon name="information-circle-outline" size="large"></ion-icon>
+        </ion-button>        
+      </ion-buttons>
+
+  </ion-toolbar>
+</ion-footer>
