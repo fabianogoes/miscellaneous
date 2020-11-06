@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<mvc:annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:resources mapping="/static/**" location="/WEB-INF/static/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<context:component-scan base-package="br.com.controleaula.controller" />
+	<context:component-scan base-package="br.com.controleaula.service" />
+	<context:component-scan base-package="br.com.controleaula.dao" />
+	<context:component-scan base-package="br.com.controleaula.framework" />
+	
+	<beans:bean id="dbDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<beans:property name="jndiName" value="java:comp/env/jdbc/controleaula_pool" />
+		<beans:property name="resourceRef" value="true"/>
+	</beans:bean>
+
+	<beans:bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"></beans:bean>	
+	
+	<beans:bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<beans:property name="persistenceUnitName" value="ControleAulaJPA"></beans:property>  
+		<beans:property name="dataSource" ref="dbDataSource" />
+			<beans:property name="jpaVendorAdapter">
+				<beans:bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+			</beans:property>
+	</beans:bean>	
+	
+	<tx:annotation-driven/>
+	
+	<beans:bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<beans:property name="entityManagerFactory" ref="entityManagerFactory" />
+	</beans:bean>		
+	
+<!-- 	<mvc:interceptors> -->
+<!-- 		<beans:bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" /> -->
+<!-- 		<mvc:interceptor> -->
+<!--     		<mvc:mapping path="/**"/> -->
+<!--     		<mvc:exclude-mapping path="/static/**"/> -->
+<!--     		<beans:bean class="br.com.codeforse.jmanagercon.controller.AutorizadorInterceptor" /> -->
+<!-- 		</mvc:interceptor> -->
+<!-- 	</mvc:interceptors>	 -->
+
+</beans:beans>
