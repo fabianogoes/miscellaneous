@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="mainApp" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<body ng-controller="LaunchController as ctrl">
+	<div th:fragment="launch-modal">
+	
+		<!--/*/ <th:block th:include="launch-bank-modal :: launch-bank-modal"></th:block>  /*/-->
+		<!--/*/ <th:block th:include="launch-category-modal :: launch-category-modal"></th:block>  /*/-->
+	
+		<div class="modal fade in bs-example-modal-lg" id="modalLaunch" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+		  <div class="modal-dialog modal-lg">
+		    <div class="modal-content">
+		      	<div class="modal-header text-center" 
+		      	     th:class="${module == 'payments' ? 'payments modal-header text-center' : 'receipts modal-header text-center' }"> 
+		        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        	<div th:if="${module == 'payments' }">
+		        		<h4 class="modal-title" id="myModalLabel" th:text="#{system.payments.name}">Pagamentos</h4>
+		        	</div>
+		        	<div th:if="${module == 'receipts' }" >
+		        		<h4 class="modal-title" id="myModalLabel" th:text="#{system.receipts.name}">Recebimentos</h4>
+		        	</div>
+		      	</div>
+		      	<div class="modal-body">		    
+
+					<form ng-submit="ctrl.postLaunch()" method="post" enctype="text/plain">
+						<div class="row">
+				        	<div th:if="${module == 'payments' }">
+								<input type="hidden" 
+										   class="form-control" 
+										   ng-model="ctrl.launchType"
+										   ng-init="ctrl.launchType='PAYMENT'" />
+				        	</div>
+				        	<div th:if="${module == 'receipts' }" >
+								<input type="hidden" 
+										   class="form-control" 
+										   ng-model="ctrl.launchType"
+										   ng-init="ctrl.launchType='RECEIPT'"  />
+
+				        	</div>						
+									   
+							<div class="col-md-2">
+								<label>ID: </label>
+								<input type="text" 
+									   class="form-control" 
+									   ng-model="ctrl.launch.id" 
+									   readonly="readonly" />
+							</div>
+							<div class="col-md-10">
+								<label>Descrição:</label>
+								<input type="text" 
+									   class="form-control" 
+									   ng-model="ctrl.launch.description" 
+									   required="required" />
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-2">
+								<label>Vencimento: </label>
+								<input type="text" 
+								       class="form-control" 
+								       id="launchDate"
+								       ng-model="ctrl.launch.maturityDate" />
+							</div>
+							<div class="col-md-3">
+								<label>Valor:</label>
+								<div class="input-group">
+			   						<span class="input-group-addon">R$</span>
+									<input type="text" 
+									       class="form-control text-right" 
+									       ng-model="ctrl.launch.amount" 
+									       placeholder="R$ 0,00" />
+			 						</div>
+							</div>
+							<div class="col-md-5">
+								<label>Categoria:</label>
+								<div class="input-group">
+				    				<select class="form-control" 
+				    					    required="required"
+									    	ng-model="ctrl.categorySelected"
+				    					    ng-options="category.name for category in ctrl.listCategories track by category.id">
+									</select>
+									<span class="input-group-addon-no">
+										<a href="#" class="text-danger" data-toggle="modal" ng-click="ctrl.showCategoryModal()" >
+											<i class="fa fa-plus"></i>
+										</a>
+									</span>
+								</div>
+							</div>	
+							<div class="col-md-2">
+								<label>
+									Situação:
+								</label>
+						        <div class="checkbox">
+						          	<label>
+						            	<input type="checkbox" 
+						                   class="form-control" 
+						                   ng-model="ctrl.launch.done" />
+						            	<span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+						          </label>
+						        </div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<label>Banco:</label>
+								<div class="input-group">
+				    				<select class="form-control" 
+									    	ng-model="ctrl.bankSelected"
+				    					    ng-options="bank.code +' - '+ bank.name for bank in ctrl.listBanks track by bank.id">
+									</select>
+									<span class="input-group-addon-no">
+										<a href="#" class="text-danger" data-toggle="modal" ng-click="ctrl.showBankModal()" >
+											<i class="fa fa-plus"></i>
+										</a>
+									</span>
+								</div>
+							</div>							
+						</div>
+						<hr/>
+						<div class="row">
+							<div class="col-md-12">
+								<button type="submit" 
+								        th:class="${module == 'payments' ? 'payments btn' : 'receipts btn' }">
+									<i class="fa fa-floppy-o"></i>&nbsp;Salvar
+								</button>
+								<a href="#" class="btn btn-default pull-right" ng-click="ctrl.hideLaunchFormModal()">
+									<i class="fa fa-times"></i>&nbsp;Cancelar
+								</a>
+							</div>
+						</div>
+					</form>	 
+		    	</div>
+				<div class="modal-footer">
+					<div class="row">
+						<div class="col-md-2">
+							<label>Cadastro:</label>
+							<span class="badge">{{ ctrl.launch.createdDate }}</span>
+						</div>
+						<div class="col-md-2">
+							<label>Vencimento:</label>
+							<span class="badge">{{ ctrl.launch.maturityDate }}</span>
+						</div>
+						<div class="col-md-2">
+							<label>Concluido:</label>
+							<span class="badge">{{ ctrl.launch.doneDate }}</span>
+						</div>
+						<div class="col-md-4"></div>
+						<div class="col-md-2 text-center" ng-if="ctrl.launch.id != null">
+							<label>Situação:</label><br/>
+							<i ng-class="ctrl.classSituation( ctrl.launch )" aria-hidden="true" ng-click="ctrl.payLaunch( ctrl.launch.id )"></i>						
+						</div>
+					</div>
+				</div>		    	
+		    </div>
+		  </div>
+		</div>	
+	
+	</div>	
+    
+</body>
+</html>

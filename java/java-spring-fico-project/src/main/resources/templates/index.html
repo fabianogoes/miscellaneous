@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="mainApp" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head lang="pt-br">
+    	<title th:text="#{system.name}">Fico</title>
+    	<!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block>  /*/-->
+  	</head>
+<body>
+
+	<!--/*/ <th:block th:include="fragments/header :: header"></th:block>  /*/-->
+
+    <div class="container-fluid">
+      <div class="row">
+       
+		<!--/*/ <th:block th:include="fragments/menu :: menu"></th:block>  /*/-->
+        
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+          <div class="page-header">
+  				<h1>
+  					<img alt="Banner" src="../static/img/logo.png" th:src="@{/img/logo.png}" width="80" height="80" />
+  					<span th:text="#{system.name}">Fico</span>&nbsp;
+  					<small th:text="#{system.description}">Financial control System</small>
+  				</h1>
+		  </div>
+
+
+          <div class="row placeholders">
+          	<!-- /// Begin-Page Containt //////////////////////////////////// -->
+            <div class="col-xs-6 col-sm-3 placeholder"  data-toggle="tooltip" data-placement="top" title="Gestão de Gastos...">            
+            	<a href="launch.html" th:href="@{/payments}">
+              		<img src="../static/img/payments.png" th:src="@{/img/payments.png}" width="100" height="100" class="img-circle img-responsive" alt="Payments"/>
+            	</a>
+            	<h4>
+            		<a href="launch.html" th:href="@{/payments}" th:text="#{system.payments.name}">
+            			Pagamentos
+            		</a>
+            	</h4>
+           		<span class="text-muted" th:text="#{system.payments.description}">Controle de Gastos</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder" data-toggle="tooltip" data-placement="top" title="Gestão de Ganhos...">
+            	<a href="launch.html" th:href="@{/receipts}">
+              		<img src="../static/img/receipts.png" th:src="@{/img/receipts.png}" width="100" height="100" class="img-circle img-responsive" alt="Receipts"/>
+              	</a>
+              	<h4>
+              		<a href="launch.html" th:href="@{/receipts}" th:text="#{system.receipts.name}">
+              			Recebimentos
+              		</a>
+              	</h4>
+              	<span class="text-muted" th:text="#{system.receipts.description}">Gestão de Ganhos</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder" data-toggle="tooltip" data-placement="top" title="Controle de Acesso...">
+              	<a href="#">
+              		<img src="../static/img/profile.png" th:src="@{/img/profile.png}" width="100" height="100" class="img-circle img-responsive" alt="Profile"/>
+              	</a>
+              	<h4>
+              		<a href="#">
+              			&nbsp;Perfil
+              		</a>
+              	</h4>
+              	<span class="text-muted">Controle de Acesso</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder" data-toggle="tooltip" data-placement="top" title="Configurações do Sistema...">
+              	<a href="#">
+              		<img src="../static/img/settings.png" th:src="@{/img/settings.png}" width="100" height="100" class="img-circle img-responsive" alt="Configurações"/>
+              	</a>
+              	<h4>
+              		<a href="#">
+              			&nbsp;Configurações
+              		</a>
+              	</h4>
+              	<span class="text-muted">Configurações do Sistema</span>
+            </div>
+            
+          </div>
+
+	    <div class="panel panel-default">
+	    	<div class="panel-heading text-center">Resumo do Mês</div>
+  			<div class="panel-body" ng-controller="LaunchController as ctrl">		
+			  	<div class="col-md-6">
+					<div class="progress">
+					  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{ ctrl.donePerc }}%">
+					     {{ ctrl.donePerc }}% Concluidos
+					  </div>
+					</div>
+					<div class="progress">
+					  <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{ ctrl.waitingPerc }}%">
+					     {{ ctrl.waitingPerc }}% Aguardando
+					  </div>
+					</div>
+					<div class="progress">
+					  <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: {{ ctrl.latePerc }}%">
+					    {{ ctrl.latePerc }}% Atrasados
+					  </div>
+					</div>
+			  </div>
+			  <div class="col-md-6">
+			  		<table class="table">
+			  			<tbody>
+			  				<tr class="text-success">
+			  					<td>Total Recebido</td>
+			  					<td>
+			  						<strong>R$ 0,00</strong>
+			  					</td>
+			  				</tr>
+			  				<tr class="text-danger">
+			  					<td>Total Pago</td>
+			  					<td>
+			  						<strong>R$ 0,00</strong>
+			  					</td>
+			  				</tr>
+			  				<tr>
+			  					<td>Saldo</td>
+			  					<td>
+			  						<strong>R$ 0,00</strong>
+			  					</td>
+			  				</tr>
+			  			</tbody>
+			  		</table>
+			  </div>
+			</div>
+		</div>	         
+          
+		<!-- /// End-Page Containt //////////////////////////////////// -->          
+        </div>
+
+      </div><!-- row -->
+      
+    </div>    
+
+
+    <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block>  /*/-->
+    
+    <!--/*/ <th:block th:include="fragments/footerjsinc :: footerjsinc"></th:block>  /*/-->
+	<script type="text/javascript" src="../static/app/services/bank-service.js" th:src="@{/app/services/bank-service.js}" ></script>
+	<script type="text/javascript" src="../static/app/services/category-service.js" th:src="@{/app/services/category-service.js}" ></script>
+	<script type="text/javascript" src="../static/app/services/launch-service.js" th:src="@{/app/services/launch-service.js}" ></script>
+	<script type="text/javascript" src="../static/app/controllers/launch-controller.js" th:src="@{/app/controllers/launch-controller.js}" ></script>
+	<script type="text/javascript" src="../static/app/controllers/bank-controller.js" th:src="@{/app/controllers/bank-controller.js}" ></script>
+    
+</body>
+</html>

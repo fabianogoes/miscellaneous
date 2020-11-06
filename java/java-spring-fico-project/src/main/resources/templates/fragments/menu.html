@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+	<div th:fragment="menu">
+	
+		<div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li th:class="${module == 'dash' ? 'active' : '' }">
+            	<a href="index.html" th:href="@{/}" >
+            		<img src="../../static/img/dashboard.png" th:src="@{/img/dashboard.png}" width="40" height="40" class="img-circle" alt="Sobre"/>
+            		&nbsp;Dashboard
+            	</a>
+            </li>
+            <li th:class="${module == 'payments' ? 'active' : '' }">
+            	<a href="launch.html" th:href="@{/payments}">
+					<img src="../../static/img/payments.png" th:src="@{/img/payments.png}" class="img-circle" width="40" height="40"  alt="Payments"/>
+            		&nbsp;<span th:text="#{system.payments.name}">Pagamentos</span>
+            	</a>
+            </li>
+            <li th:class="${module == 'receipts' ? 'active' : '' }">
+            	<a href="launch.html" th:href="@{/receipts}">
+					<img src="../../static/img/receipts.png" th:src="@{/img/receipts.png}" width="40" height="40" class="img-circle" alt="Receipts"/>
+            		&nbsp;<span th:text="#{system.receipts.name}">Recebimentos</span>
+            	</a>
+            </li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li>
+            	<a href="">
+            		<img src="../../static/img/profile.png" th:src="@{/img/profile.png}" width="40" height="40" class="img-circle" alt="Profile"/>
+            		&nbsp;Perfil
+            	</a>
+            </li>
+            <li>
+            	<a href="">
+            		<img src="../../static/img/settings.png" th:src="@{/img/settings.png}" width="40" height="40" class="img-circle" alt="Configurações"/>
+            		&nbsp;Configurações
+            	</a>
+            </li>
+          </ul>
+        </div>
+            
+	</div> 
+	   
+</body>
+</html>

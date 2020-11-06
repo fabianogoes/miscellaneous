@@ -1,0 +1,38 @@
+language: java
+
+jdk:
+  - oraclejdk7
+
+notifications:
+  email:
+    - fabianogoes@gmail.com
+  on_success: always
+  on_failure: always
+
+before_install:
+    #- sudo apt-get update
+    - git config --global user.name "Codeforse CI"
+    - git config --global user.email codeforse@gmail.com
+    - touch ~/.ssh/id_rsa.pub
+    - ls -la ~/.ssh
+    - echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCvKcey5YxUmg7YcTJari4qQZKiLy4kLZpPcuMS3FUSNSSj2cOOySzLGgBhWF6mGQP6fQPxNCV1EyGS2QXrKDAA2A16kyKE2O1vngw8gT5bIMWaIok5HqOmBTB2d/B0rDjXarfAqCK7CSNfMyFVAGKK9Au8DiPet1L/Tcg7ynqENp5HA2kKkPE78hQD1G0A/fPgfyT2t7RoiRYUQ0yToNbagZ2prJw745XzGIo9hhtUTJrBzoDepZiOEaOCjMJ6lfq+oIqXnTZO1VMilGMBZcofFkFo9ufLgNCY6SrIwNus7hb1PLgaje99jzoe880wXId+DOKGII1Fs+1r3XHsgX5PVU9yinzKS7UYu5/jSfusN2+3wE/7tHZv5RUQIn/wYDqtm+ehpFPY8yx8+GAnt8cPBDjoHa1K4g30ayZ/HM0gI3gH08o/QtD8ylCF/TK0c9Fa/facrEg8+e+LsNcsgeQqec/Cyk+8xTcR6ak8rxy5d7nYwhPRODPaBVeSoGsorRUEc9CF56wjcmeCWSnb62zzyvc2kij816wd8RHKFLBFaSXoVc2VppRq0CqfxCH5He+Ldghm2DiWHUwIqdZSJHnPs07QQn20uc0pQIr8dpNqD1k3MGX5jsmgVUxeWKCnjuI0WpM9O9w3T7DaNhVS1FCsFGo2wf1E9NJ39abhyh5tTw== codeforse@gmail.com' >> ~/.ssh/id_rsa.pub
+    - touch ~/.ssh/known_hosts
+    - echo 'app-codeforse.rhcloud.com,54.173.161.100 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAwUPkUQ84FKIWhOxy5RBBuR9gbrov2epARmFmaxD7NFRayobnDvl8GaBTbH1kxaZ/tYQeIqVE1assL74KArMQBzz6rj0FEWf0zrXxAY55EGswmWEEdqlYu1LbIxDCG6opqkiq6ocxjea9K3XYq+2aYoAvI3sshSImTYZP1glFhrh3QUsNJHOfDboTLJFNSdLjzXubRMa4eEx7s9pe9kwBOaLNIiVeGzUWg5+KaykSg2UMB3aG127t8kX+OhDYceVR42ehQJ0MjQGlGoNtldxGrlX8NjxUqvJAo6pqNqRK8Cps7/x/m0GPXWAgSZymhurXmj1o2LP5nKLtVzMPvwMb0w==' >> ~/.ssh/known_hosts
+    - cat ~/.ssh/id_rsa.pub
+    - cat ~/.ssh/known_hosts
+
+build:
+  ci:
+    - mvn clean package -Dmaven.test.skip=true
+    - ls -la target/
+    - git clone ssh://577f0acd2d52716dd2000173@app-codeforse.rhcloud.com/~/git/app.git/
+    - ls -la
+    - cp target/fico.war app/webapps/
+    - cd app/
+    #- git pull
+    - git pull --rebase origin master
+    - git add .
+    - git commit -am 'deploy by shippable ci'
+    - git push origin master
+
+

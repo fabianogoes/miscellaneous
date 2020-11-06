@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+  
+	<meta charset="utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Fico - Financial control System"/>
+    <meta name="author" content="Fabiano Góes / e-Programar"/>
+
+    <link rel="shortcut icon" href="../static/img/logo.png" th:href="@{/img/logo.png}" /> 
+    <title th:text="#{system.name}">Fico</title>
+       
+    <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css" media="all" />
+    <link href="../static/css/sticky-footer.css" rel="stylesheet" th:href="@{/css/sticky-footer.css}" />
+    <link href="../static/plugins/font-awesome/css/font-awesome.min.css" th:href="@{/plugins/font-awesome/css/font-awesome.min.css}"  rel="stylesheet" />
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../static/css/ie10-viewport-bug-workaround.css" rel="stylesheet" th:href="@{/css/ie10-viewport-bug-workaround.css}" />
+    <link href="../static/css/dashboard.css" rel="stylesheet" th:href="@{/css/dashboard.css}" />
+    <link rel="stylesheet" type="text/css" media="all" href="../static/css/custom.css" th:href="@{/css/custom.css}" />
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../static/js/ie8-responsive-file-warning.js" th:href="@{/js/ie-emulation-modes-warning.js}"></script><![endif]-->
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->    
+  </head>
+
+<body>
+
+    <nav class="navbar navbar-gray navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="#">
+          	<img th:src="@{/img/logo.png}" src="../static/img/logo.png" height="50px" />
+          </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+            	<a href="#">
+            		<i class="fa fa-tachometer"></i>&nbsp;Dashboard
+            	</a>
+            </li>
+            <li>
+            	<a href="#">
+            		<i class="fa fa-cogs"></i>&nbsp;Configurações
+            	</a>
+            </li>
+            <li>
+            	<a href="#">
+            		<i class="fa fa-user"></i>&nbsp;Perfil
+            	</a>
+            </li>
+            <li>
+            	<a href="#">
+            		<i class="fa fa-life-ring"></i>&nbsp;Ajuda
+            	</a>
+            </li>
+            <li>
+            	<a href="#">
+            		<i class="fa fa-info-circle"></i>&nbsp;Sobre
+            	</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+    <div class="container-fluid">
+      <div class="row">
+       
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="#"><i class="fa fa-tachometer"></i>&nbsp;Dashboard <span class="sr-only">(current)</span></a></li>
+            <li>
+            	<a href="lancamento.html" th:href="@{/lancamento/new}">
+            		<i class="fa fa-usd"></i>&nbsp;
+            		Contas a Pagar
+            	</a>
+            </li>
+            <li><a href="#"><i class="fa fa-money"></i>&nbsp;Contas a Receber</a></li>
+            <li><a href="#"><i class="fa fa-credit-card-alt"></i>&nbsp;Cartão de Crédito</a></li>
+            <li><a href="#"><i class="fa fa-bank"></i>&nbsp;Bancos</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href=""><i class="fa fa-users"></i>&nbsp;Usuários</a></li>
+            <li><a href=""><i class="fa fa-list-alt"></i>&nbsp;Perfil</a></li>
+            <li><a href=""><i class="fa fa-cogs"></i>&nbsp;Configurações</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href=""><i class="fa fa-life-ring"></i>&nbsp;Ajuda</a></li>
+            <li><a href=""><i class="fa fa-life-ring"></i>&nbsp;Sobre</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+          <div class="page-header">
+  				<h1>
+  					<img alt="Banner" src="../static/img/logo.png" th:src="@{/img/logo.png}" width="80" height="80" />
+  					<span th:text="#{system.name}">Fico</span>&nbsp;
+  					<small th:text="#{system.description}">Financial control System</small>
+  				</h1>
+		  </div>
+
+
+          <div class="row placeholders">
+            <div class="col-xs-6 col-sm-3 placeholder">
+            	<a href="contas-a-pagar.html" th:href="@{/contas/pagar/new}">
+              		<img src="../static/img/contas-a-pagar.png" th:src="@{/img/contas-a-pagar.png}" width="100" height="100" class="img-responsive" alt="Contas a Pagar"/>
+            	</a>
+            	<h4>
+            		<a href="lancamento.html" th:href="@{/lancamento/new}">
+            			<i class="fa fa-usd"></i>&nbsp;
+            			Contas a Pagar
+            		</a>
+            	</h4>
+           		<span class="text-muted">Gestão de Contas a Pagar</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+            	<a href="#">
+              		<img src="../static/img/contas-a-receber.png" th:src="@{/img/contas-a-receber.png}" width="100" height="100" class="img-responsive" alt="Contas a Receber"/>
+              	</a>
+              	<h4>
+              		<a href="#"><i class="fa fa-money"></i>&nbsp;Contas a Receber</a>
+              	</h4>
+              	<span class="text-muted">Gestão de Contas a Receber</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              	<a href="#">
+              		<img src="../static/img/cartao-de-credito.png" th:src="@{/img/cartao-de-credito.png}" width="100" height="100" class="img-responsive" alt="Cartão de Crédito"/>
+              	</a>
+              	<h4>
+              		<a href="#"><i class="fa fa-credit-card-alt"></i>&nbsp;Cartão de Crédito</a>
+              	</h4>
+              	<span class="text-muted">Controle de Cartões de Crédito</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              	<a href="#">
+              		<img src="../static/img/bank.png" th:src="@{/img/bank.png}" width="100" height="100" class="img-responsive" alt="Bancos"/>
+              	</a>
+              	<h4>
+              		<a href="#"><i class="fa fa-bank"></i>&nbsp;Bancos</a>
+              	</h4>
+              	<span class="text-muted">Gestão de Contas Bancárias</span>
+            </div>
+          </div>
+          
+	      <div class="text-center">
+			  <img alt="Banner" src="../static/img/banner-1000x287.png" height="180" th:src="@{/img/banner-1000x287.png}" />
+	      </div>           
+          
+        </div>
+      </div>
+    </div>    
+
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted pull-right">
+        	<i class="fa fa-font-awesome" aria-hidden="true"></i>&nbsp;<span th:text="#{system.name}" class="badge" >Fico</span>&nbsp;
+  			<span th:text="#{system.description}">Financial control System</span>&nbsp;
+        	<i class="fa fa-tag"></i>&nbsp;<span th:text="#{system.version}" class="badge">1.0</span>
+        </p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript ================================================== -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="../static/js/bootstrap.min.js" th:href="@{/js/bootstrap.min.js}"></script>
+    <script src="../static/js/holder.min.js" th:href="@{/js/holder.min.js}"></script>
+    <script src="../static/js/ie10-viewport-bug-workaround.js" th:href="@{/js/ie10-viewport-bug-workaround.js}"></script>    
+    
+</body>
+</html>

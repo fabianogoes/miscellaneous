@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="mainApp" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head lang="pt-br">
+    	<title th:text="#{system.name}">Fico</title>
+    	<!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block>  /*/-->
+    	<script>
+			$(function() {
+				$.datepicker.regional['pt-BR'] = {
+		                closeText: 'Fechar',
+		                prevText: '&#x3c;Anterior',
+		                nextText: 'Pr&oacute;ximo&#x3e;',
+		                currentText: 'Hoje',
+		                monthNames: ['Janeiro','Fevereiro','Mar&ccedil;o','Abril','Maio','Junho',
+		                'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+		                monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun',
+		                'Jul','Ago','Set','Out','Nov','Dez'],
+		                dayNames: ['Domingo','Segunda-feira','Ter&ccedil;a-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sabado'],
+		                dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sab'],
+		                dayNamesMin: ['Dom','Seg','Ter','Qua','Qui','Sex','Sab'],
+		                weekHeader: 'Sm',
+		                dateFormat: 'dd/mm/yy',
+		                firstDay: 0,
+		                isRTL: false,
+		                showMonthAfterYear: false,
+		                yearSuffix: ''};
+				$.datepicker.setDefaults($.datepicker.regional['pt-BR']);
+    			$( "#launchDate" ).datepicker();
+			});
+		</script>
+  	</head>
+<body ng-controller="LaunchController as ctrl">
+	<!--/*/ <th:block th:include="fragments/header :: header"></th:block>  /*/-->
+
+    <div class="container-fluid">
+      <div class="row">
+       
+		<!--/*/ <th:block th:include="fragments/menu :: menu"></th:block>  /*/-->
+        
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+          <div class="page-header">
+  				<h1>
+  					<div th:if="${module == 'payments' }">
+	  					<img src="../static/img/payments.png" th:src="@{/img/payments.png}" class="img-circle" width="80" height="80"  alt="Payments"/>
+	  					&nbsp;
+	  					<span th:text="#{system.payments.name}">Pagamentos</span>&nbsp;
+	  					<small class ="text-danger" th:text="#{system.payments.description}">Gestão de Gastos</small>
+	  					<input type="hidden" id="typeId" value="PAYMENT" />
+  					</div>
+  					<div th:if="${module == 'receipts' }">
+	  					<img src="../static/img/receipts.png" th:src="@{/img/receipts.png}" class="img-circle" width="80" height="80"  alt="Receipts"/>
+	  					&nbsp;
+	  					<span th:text="#{system.receipts.name}">Recebimentos</span>&nbsp;
+	  					<small class="text-success" th:text="#{system.receipts.description}">Gestão de Ganhos</small>
+ 						<input type="hidden" id="typeId" value="RECEIPT" />
+  					</div>
+  				</h1>
+		  </div>
+
+          <div class="row row-containt">
+          	<!-- /// Begin-Page Containt //////////////////////////////////// -->
+
+			<!--/*/ <th:block th:include="launch-modal :: launch-modal"></th:block>  /*/-->	
+			<div class="table-responsive">
+			  <table class="table table-striped table-hover">
+	
+					<thead>
+						<tr>
+							<th class="col-md-1 text-center">ID</th>
+							<th class="col-md-3">Descrição</th>
+							<th class="col-md-1 text-center">Vencimento</th>
+							<th class="col-md-2 text-center">Valor</th>
+							<th class="col-md-1 text-center">Categoria</th>
+							<th class="col-md-1 text-center">Banco</th>
+							<th class="col-md-1 text-center">Situação</th>
+							<th class="col-md-2 text-center">
+								<a href="#" 
+								   class="btn btn-sm btn-danger" 
+								   th:class="${module == 'payments' ? 'payments btn btn-sm' : 'receipts btn btn-sm' }"
+								   ng-click="ctrl.showLaunchFormModal('new')" 
+								   data-toggle="tooltip" data-placement="top" title="Cadastrar Novo Lançamento...">
+									<i class="fa fa-plus"></i>&nbsp;Novo
+								</a>				
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+					   <tr ng-repeat = "launch in ctrl.listAll">
+					      <td class="col-md-1 text-center">{{ launch.id }}</td>
+					      <td>
+					      	<a href="" class="btn btn-sm btn-default"
+					      		ng-click="ctrl.editLaunch( launch.id )"  
+								data-toggle="tooltip" data-placement="top" title="Editar Lançamento...">
+						      	{{ launch.description }}
+					      	</a>
+					      </td>
+					      <td class="col-md-1 text-center">
+					      	<span class="badge">{{ launch.maturityDate }}</span>
+					      </td>
+					      <td class="col-md-1 text-center">
+					      	{{ 'R$ ' + launch.amount }}
+					      </td>
+					      <td class="col-md-2 text-center">
+					      	{{ launch.category.name }}
+					      </td>
+					      <td class="col-md-1 text-center">
+					      	{{ launch.bank.code }}
+					      </td>
+					      <td class="col-md-1 text-center">	
+						  	<i ng-class="ctrl.classSituation( launch )" 
+						  	   data-toggle="tooltip" 
+						  	   data-placement="top" title="{{ ctrl.titleSituation( launch ) }}" 
+						  	   aria-hidden="true" ng-click="ctrl.payLaunch( launch.id )"></i>
+					      </td>
+					      <td class="col-md-2 text-center">
+								<a href="#" 
+								   class="btn btn-sm btn-default" 
+								   ng-click="ctrl.editLaunch( launch.id )"  
+								   data-toggle="tooltip" data-placement="top" title="Editar Lançamento...">
+										<i class="fa fa-pencil text-primary"></i>
+								</a>
+								<a href="#" 
+								   class="btn btn-sm btn-default" 
+								   ng-click="ctrl.confirmDeleteLaunch( launch.id )"
+								   data-toggle="tooltip" data-placement="top" title="Deletar Lançamento..." >
+										<i class="fa fa-trash text-danger"></i>
+								</a>															
+					      </td>
+					   </tr>					
+					</tbody>
+					
+			  </table>
+			</div>	
+			
+            <!-- /// End-Page Containt //////////////////////////////////// -->
+          </div>
+          
+        </div>
+      </div>
+    </div>    
+
+
+    <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block>  /*/-->
+    
+	<!--/*/ <th:block th:include="fragments/footerjsinc :: footerjsinc"></th:block>  /*/-->
+	<script type="text/javascript" src="../static/app/services/bank-service.js" th:src="@{/app/services/bank-service.js}" ></script>
+	<script type="text/javascript" src="../static/app/services/category-service.js" th:src="@{/app/services/category-service.js}" ></script>
+	<script type="text/javascript" src="../static/app/services/launch-service.js" th:src="@{/app/services/launch-service.js}" ></script>
+	<script type="text/javascript" src="../static/app/controllers/bank-controller.js" th:src="@{/app/controllers/bank-controller.js}" ></script>
+	<script type="text/javascript" src="../static/app/controllers/launch-controller.js" th:src="@{/app/controllers/launch-controller.js}" ></script>
+	
+</body>
+</html>

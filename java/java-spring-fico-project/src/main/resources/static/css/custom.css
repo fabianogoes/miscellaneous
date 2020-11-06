@@ -1,0 +1,295 @@
+/**
+	Default Color: #DC564C
+**/
+
+body{
+	margin-top: 0px;
+}
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 768px) {
+  .container {
+    width: 90%;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 90%;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 90%;
+  }
+}
+.container-fluid {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.navbar-gray {
+  background-color: #f5f5f5;
+  border-color: #080808;
+}
+
+.navbar-gray .navbar-brand {
+  color: #696969;
+}
+.navbar-gray .navbar-brand:hover,
+.navbar-gray .navbar-brand:focus {
+  color: #428BCA;  
+  background-color: transparent;
+}
+.navbar-gray .navbar-text {
+  color: #696969;
+}
+.navbar-gray .navbar-nav > li > a {
+  color: #696969;
+}
+.navbar-gray .navbar-nav > li > a:hover,
+.navbar-gray .navbar-nav > li > a:focus {
+  color: #428BCA;
+  background-color: transparent;
+}
+.navbar-gray .navbar-nav > .active > a,
+.navbar-gray .navbar-nav > .active > a:hover,
+.navbar-gray .navbar-nav > .active > a:focus {
+  color: #428BCA;
+  background-color: #080808;
+}
+.navbar-gray .navbar-nav > .disabled > a,
+.navbar-gray .navbar-nav > .disabled > a:hover,
+.navbar-gray .navbar-nav > .disabled > a:focus {
+  color: #444;
+  background-color: transparent;
+}
+.navbar-gray .navbar-toggle {
+  border-color: #333;
+}
+.navbar-gray .navbar-toggle:hover,
+.navbar-gray .navbar-toggle:focus {
+  background-color: #333;
+}
+.navbar-gray .navbar-toggle .icon-bar {
+  background-color: #fff;
+}
+.navbar-gray .navbar-collapse,
+.navbar-gray .navbar-form {
+  border-color: #101010;
+}
+/* .navbar-gray .navbar-nav > .open > a, */
+/* .navbar-gray .navbar-nav > .open > a:hover, */
+/* .navbar-gray .navbar-nav > .open > a:focus { */
+/*   color: #fff; */
+/*   background-color: #080808; */
+/* } */
+
+.row-containt {
+  margin-right: 2px;
+  margin-left: 2px;
+}
+
+.input-group-addon-no,
+.input-group-btn,
+.input-group .form-control {
+  display: table-cell;
+}
+.input-group-addon-no:not(:first-child):not(:last-child),
+.input-group-btn:not(:first-child):not(:last-child),
+.input-group .form-control:not(:first-child):not(:last-child) {
+  border-radius: 0;
+}
+.input-group-addon-no,
+.input-group-btn {
+  width: 1%;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.input-group-addon-no {
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1;
+  color: #555;
+  text-align: center;
+  background-color: #fff;
+  border: 0px solid #ccc;
+  border-radius: 4px;
+}
+.input-group-addon-no.input-sm {
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 3px;
+}
+.input-group-addon-no.input-lg {
+  padding: 10px 16px;
+  font-size: 18px;
+  border-radius: 6px;
+}
+.input-group-addon-no input[type="radio"],
+.input-group-addon-no input[type="checkbox"] {
+  margin-top: 0;
+}
+.input-group .form-control:first-child,
+.input-group-addon-no:first-child,
+.input-group-btn:first-child > .btn,
+.input-group-btn:first-child > .btn-group > .btn,
+.input-group-btn:first-child > .dropdown-toggle,
+.input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle),
+.input-group-btn:last-child > .btn-group:not(:last-child) > .btn {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.input-group-addon-no:first-child {
+  border-right: 0;
+}
+.input-group .form-control:last-child,
+.input-group-addon-no:last-child,
+.input-group-btn:last-child > .btn,
+.input-group-btn:last-child > .btn-group > .btn,
+.input-group-btn:last-child > .dropdown-toggle,
+.input-group-btn:first-child > .btn:not(:first-child),
+.input-group-btn:first-child > .btn-group:not(:first-child) > .btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-top: 4px dashed;
+  border-top: 4px solid \9;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+}
+.dropup,
+.dropdown {
+  position: relative;
+}
+.dropdown-toggle:focus {
+  outline: 0;
+}
+
+.input-group-addon-no:last-child {
+  border-left: 0;
+}
+.input-group-btn {
+  position: relative;
+  font-size: 0;
+  white-space: nowrap;
+}
+.input-group-btn > .btn {
+  position: relative;
+}
+.input-group-btn > .btn + .btn {
+  margin-left: -1px;
+}
+.input-group-btn > .btn:hover,
+.input-group-btn > .btn:focus,
+.input-group-btn > .btn:active {
+  z-index: 2;
+}
+.input-group-btn:first-child > .btn,
+.input-group-btn:first-child > .btn-group {
+  margin-right: -1px;
+}
+.input-group-btn:last-child > .btn,
+.input-group-btn:last-child > .btn-group {
+  z-index: 2;
+  margin-left: -1px;
+}
+
+/** Animated radios & checkboxes (noJS) **/
+.checkbox label:after, 
+.radio label:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.checkbox .cr,
+.radio .cr {
+    position: relative;
+    display: inline-block;
+    border: 1px solid #a9a9a9;
+    border-radius: .25em;
+    width: 1.3em;
+    height: 1.3em;
+    float: left;
+    margin-right: .5em;
+}
+
+.radio .cr {
+    border-radius: 50%;
+}
+
+.checkbox .cr .cr-icon,
+.radio .cr .cr-icon {
+    position: absolute;
+    font-size: .8em;
+    line-height: 0;
+    top: 50%;
+    left: 20%;
+}
+
+.radio .cr .cr-icon {
+    margin-left: 0.04em;
+}
+
+.checkbox label input[type="checkbox"],
+.radio label input[type="radio"] {
+    display: none;
+}
+
+.checkbox label input[type="checkbox"] + .cr > .cr-icon,
+.radio label input[type="radio"] + .cr > .cr-icon {
+    transform: scale(3) rotateZ(-20deg);
+    opacity: 0;
+    transition: all .3s ease-in;
+}
+
+.checkbox label input[type="checkbox"]:checked + .cr > .cr-icon,
+.radio label input[type="radio"]:checked + .cr > .cr-icon {
+    transform: scale(1) rotateZ(0deg);
+    opacity: 1;
+}
+
+.checkbox label input[type="checkbox"]:disabled + .cr,
+.radio label input[type="radio"]:disabled + .cr {
+    opacity: .5;
+}
+
+.modal-header {
+  padding: 15px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.payments{
+  background-color: #DC564C;
+  color: #fff;	
+}
+
+.receipts{
+  background-color: #4E6E00;
+  color: #fff;	
+}
+
+.modal-footer {
+  padding: 5px;
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #DC564C;
+  border-color: #d43f3a;
+}

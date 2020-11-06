@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+	<div th:fragment="footerjsinc">
+	    <!-- Bootstrap core JavaScript ================================================== -->
+		<script src="../../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+	    <script src="../../static/js/holder.min.js" th:src="@{/js/holder.min.js}"></script>
+	    <script src="../../static/js/ie10-viewport-bug-workaround.js" th:src="@{/js/ie10-viewport-bug-workaround.js}"></script>
+	    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>  
+	    <script type="text/javascript" src="../../static/app/mainApp.js" th:src="@{/app/mainApp.js}" ></script>
+	    <script type="text/javascript">
+  			$(document).ready(function() {
+    			$("body").tooltip({ selector: '[data-toggle=tooltip]' });
+    			$( "#header-about-id" ).click(function() {
+  					//sweetAlert("Fico - Financial control System", "Autor: Fabiano Góes - 2016", "success");
+  					swal({   
+  						title: "Fico - Financial control System",   
+  						text: "<b>Autor:</b> Fabiano Góes <br/>"+
+  						      "<b>Ano:</b>	 2016",   
+  						imageUrl: APP_NAME + "/img/logo.png",
+  						html: true 
+  					});
+				});
+			});
+  		</script>	      
+	</div>
+	
+</body>
+</html>

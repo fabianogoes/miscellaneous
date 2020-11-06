@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="mainApp" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<body ng-controller="LaunchController as ctrl">
+
+	<div th:fragment="launch-category-modal">
+	
+		<!-- Modal -->
+		<div class="modal fade" id="modalCategory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      	<div class="modal-header text-center">
+		        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        	<h4 class="modal-title" id="myModalLabel">Categoria</h4>
+		      	</div>
+		      	<div class="modal-body">
+	
+					<form ng-submit="ctrl.createCategory()" method="post">
+					
+						<input type="hidden" 
+						       class="form-control" 
+						       ng-model="ctrl.category.id" 
+						       id="categoryId" />
+						<div class="row">
+							<div class="col-md-12">
+								<label>Nome</label>
+								<input type="text" 
+								       class="form-control" 
+								       ng-model="ctrl.category.name" 
+								       id="categoryName" />
+							</div>
+						</div>
+						<hr/>
+						<div class="row">
+							<div class="col-md-12">
+								<button type="submit" class="btn btn-danger">
+									<i class="fa fa-floppy-o"></i>&nbsp;Salvar
+								</button>
+								<a href="#" class="btn btn-default pull-right" ng-click="ctrl.hideCategoryModal()">
+									<i class="fa fa-times"></i>&nbsp;Cancelar
+								</a>
+							</div>
+						</div>
+					</form>	
+	
+		      </div>
+		    </div>
+		  </div>
+		</div>  	
+	
+	</div>	
+    
+</body>
+</html>
