@@ -1,0 +1,155 @@
+<html lang="en" ng-app="mainApp">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="description" content="Material Design, Materialize, Angular">        
+        <title>English Content Community</title>
+        <!-- Favicons-->
+        <link rel="apple-touch-icon-precomposed" href="images/community.png">
+        <meta name="msapplication-TileColor" content="#FFFFFF">
+        <meta name="msapplication-TileImage" content="images/community.png">
+        <link rel="icon" href="images/community.png" sizes="32x32">
+        <!--  Android 5 Chrome Color-->
+        <meta name="theme-color" content="#EE6E73">        
+
+        <link rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="css/sticky-footer-navbar.css" rel="stylesheet">   
+   </head>
+<body>
+      
+    <!-- IndexController -->
+    <div ng-controller="IndexController as ctrlIndex">              
+        
+        <!-- Dropdown Profile -->
+        <section id="DropdownProfile">
+            <ul id="dropdown1" class="dropdown-content">
+                <li><a href="/#/user/register">Profile</a></li>
+                <li class="divider"></li>
+                <li><a href="/#/settings">Settings</a></li>
+                <li><a href="/#/login">Sign out</a></li>
+            </ul>
+        </section>
+        <!-- /Dropdown Profile -->
+
+        <!-- NavBar Menu -->
+        <section id="NavBarMenu">
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="/#/" class="brand-logo">
+                        <i class="material-icons button-collapse"  data-activates="slide-out">menu</i>
+                        <img src="images/logo.png" alt="Logo" height="100%">
+                    </a>
+                    <ul class="right hide-on-med-and-down" ng-hide="session == null">
+                        <li><a href="/#/login">Sign in</a></li>
+                        <li><a href="/#/login">Sign up</a></li>
+                        <!-- Dropdown Trigger -->
+                        <li>
+                            <a class="dropdown-button" href="#!" data-activates="dropdown1">
+                                <img src="images/profile.png" alt="Profile" style="height: 100%" /><i class="material-icons right">arrow_drop_down</i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </section>
+        <!-- /NavBar Menu -->
+
+        <!-- SideBar Left -->
+        <section id="SideBarLeft">
+            <div ng-hide="session == null">
+                <ul id="slide-out" class="side-nav">
+                    <li>
+                        <div class="userView">
+                            <div class="background">
+                                <img src="images/office.jpg">
+                            </div>
+                            <a href="#!user"><img class="circle" src="images/profile.png"></a>
+                            <a href="#!name"><span class="white-text name">Fabiano Góes</span></a>
+                            <a href="#!email"><span class="white-text email">fabianogoes@gmail.com</span></a>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="subheader">Profile</a>
+                    </li>
+                    <li>
+                        <a href="/#/user/register"><i class="material-icons">perm_identity</i>Profile</a>
+                    </li>                    
+                    <li>
+                        <a class="subheader">Content</a>
+                    </li>
+                    <li>
+                        <a href="/#/content/topics"><i class="material-icons">list</i>Topics</a>
+                    </li>
+                    <li><div class="divider"></div></li>
+                    <li>
+                        <a class="subheader">System</a>
+                    </li>
+                    <li>
+                        <a href="/#/user/list"><i class="material-icons">supervisor_account</i>Users</a>
+                    </li>
+                    <li>
+                        <a href="/#/settings"><i class="material-icons">settings</i>Configurations</a>
+                    </li>
+                    <li>
+                        <a href="/#/login"><i class="material-icons">settings_power</i>Sign out</a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <!-- /SideBar Left -->
+
+    </div>
+    <!-- /IndexController -->
+
+    <!-- Content Section -->
+    <section id="ContentSection">
+        <div class="container center">
+            <ng-view></ng-view>
+        </div>
+    </section>
+    <!-- /Content Section -->
+
+    <!-- Footer Page -->
+    <section id="FooterPage">
+        <footer class="footer">
+            <div class="container">
+                <p class="text-muted">
+                    <img src="images/logo.png" alt="Profile" style="height: 25px" />                
+                    English Content Community <span class="new badge grey lighten-1" data-badge-caption="v.1.0.20170521"></span> Copyright © 2017.
+                </p>
+            </div>
+        </footer> 
+    </section>
+    <!-- /Footer Page -->
+
+    <!-- Javascript Library -->
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/angular-route/angular-route.min.js"></script>
+    <!-- /Javascript Library -->
+
+    <!-- Javascript App -->
+    <script src="js/app.js"></script>
+    <script src="js/controllers/index-controller.js"></script>
+    <script src="js/controllers/login-controller.js"></script>
+    <script src="js/controllers/content-topics-controller.js"></script>
+    <script src="js/controllers/content-phrase-controller.js"></script>
+    <script src="js/controllers/content-word-controller.js"></script>
+    <script>
+        $('.button-collapse').sideNav({
+            menuWidth: 300, // Default is 300
+            edge: 'left', // Choose the horizontal origin
+            closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+            draggable: true // Choose whether you can drag to open on touch screens
+            }
+        );
+    </script>       
+    <!-- /Javascript App -->
+
+</body>
+</html>

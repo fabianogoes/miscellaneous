@@ -1,0 +1,21 @@
+<div class="card">
+    <span class="card-title grey-text center" ng-bind="ctrlContent.title"></span>
+    <div class="card-content">
+        
+        <ul class="collection with-header">
+            <li class="collection-item avatar" data-ng-repeat="content in ctrlContent.contents">
+                <a data-ng-href="/#/content/topics/phrase/register">
+                    <img data-ng-src="images/{{ctrlContent.defaltImage}}" alt="Content" class="circle">
+                    <span class="title teal-text">{{content.ask}}</span>
+                    <p>
+                        <span class="grey-text"><i class="tiny material-icons">trending_flat</i>{{content.answer}}</span>
+                    </p>
+                    <span class="secondary-content">
+                        <span class="new badge grey lighten-1" data-badge-caption="{{content.description}}"></span>
+                    </span>
+                </a>
+            </li>
+        </ul>      
+
+    </div><!-- /card-content -->   
+</div><!-- /card -->

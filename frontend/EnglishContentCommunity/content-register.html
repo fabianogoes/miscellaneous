@@ -1,0 +1,41 @@
+<div class="card">        
+    <span class="card-title grey-text center" ng-bind="ctrlContent.title"></span>
+    <div class="card-content">
+        <div class="row">
+            <form class="col s12" method="post">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="text" class="validate" data-ng-model="ctrlContent.content.ask"/>
+                        <label data-ng-bind="ctrlContent.askCaption"></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="text" class="validate" data-ng-model="ctrlContent.content.answer"/>
+                        <label data-ng-bind="ctrlContent.answerCaption"></label>                        
+                        <p data-ng-show="ctrlContent.contentType == 'word'">
+                            <input name="verb" class="with-gap" type="radio" id="regularVerb" value="REGULAR" data-ng-model="ctrlContent.content.verb" />
+                            <label for="regularVerb">Regular Verb</label>
+                            <input name="verb" class="with-gap" type="radio" id="irregularVerb" value="IRREGULAR" data-ng-model="ctrlContent.content.verb" />
+                            <label for="irregularVerb">Irregular Verb</label>                         
+                            <input name="verb" class="with-gap" type="radio" id="noneVerb" value="NONE" data-ng-model="ctrlContent.content.verb" />
+                            <label for="noneVerb">None</label>                         
+                        </p>                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <button type="submit" class="waves-effect waves-light btn left" data-ng-click="ctrlContent.submitContent(ctrlContent.content)">
+                            <i class="material-icons left">done</i>
+                            Save
+                        </button>
+                        <a ng-href="/#{{ctrlContent.hrefRegisterCancel}}" class="waves-effect grey btn right">
+                            <i class="material-icons left">cancel</i>
+                            Cancel
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div><!-- /row -->
+    </div><!-- /card-content -->
+</div><!-- /card -->
